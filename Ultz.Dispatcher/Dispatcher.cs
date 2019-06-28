@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Ultz.Dispatcher
 {
-    public class Dispatcher
+    public class Dispatcher : IDisposable
     {
         public Dispatcher() : this(new DispatcherThread())
         {
@@ -78,5 +78,10 @@ namespace Ultz.Dispatcher
         }
         
         public DispatcherThread Thread { get; }
+
+        public void Dispose()
+        {
+            Thread?.Dispose();
+        }
     }
 }
