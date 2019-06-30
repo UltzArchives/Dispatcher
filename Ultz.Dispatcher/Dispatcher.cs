@@ -15,11 +15,12 @@ namespace Ultz.Dispatcher
             Thread = underlyingThread;
         }
 
-        public void Invoke(Delegate @delegate, params object[] args)
+        public object Invoke(Delegate @delegate, params object[] args)
         {
-            var task = new Task(() => { @delegate.DynamicInvoke(args);});
+            var task = new Task<object>(() => @delegate.DynamicInvoke(args));
             Thread.Queue.Add(task);
             SpinWait.SpinUntil(() => task.IsCompleted);
+            return task.Result;
         }
 
         public void Invoke(Action @delegate)
@@ -37,15 +38,16 @@ namespace Ultz.Dispatcher
             return task.Result;
         }
 
-        public async Task InvokeAsync(Delegate @delegate, params object[] args)
+        public async Task<object> InvokeAsync(Delegate @delegate, params object[] args)
         {
-            await Task.Run
+            return await Task.Run
             (
                 () =>
                 {
-                    var task = new Task(() => { @delegate.DynamicInvoke(args); });
+                    var task = new Task<object>(() => { return @delegate.DynamicInvoke(args); });
                     Thread.Queue.Add(task);
                     SpinWait.SpinUntil(() => task.IsCompleted);
+                    return task;
                 }
             );
         }
