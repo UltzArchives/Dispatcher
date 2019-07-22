@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultz.Dispatcher", "Ultz.Dispatcher\Ultz.Dispatcher.csproj", "{1131BA9E-8ABB-477E-A518-9BA36213FC9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultz.Dispatcher", "src\Ultz.Dispatcher\Ultz.Dispatcher.csproj", "{1131BA9E-8ABB-477E-A518-9BA36213FC9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototyper", "Prototyper\Prototyper.csproj", "{B03829EB-C581-4487-A521-C2733A9D9876}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototyper", "src\Prototyper\Prototyper.csproj", "{B03829EB-C581-4487-A521-C2733A9D9876}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
