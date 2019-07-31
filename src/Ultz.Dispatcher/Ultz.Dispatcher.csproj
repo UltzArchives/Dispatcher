@@ -2,10 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>1.1.0</Version>
+        <Version>2.0.0</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Provides tools to run code exclusively on a specific thread, similar to the Dispatcher class from WPF.</Description>
-        <PackageReleaseNotes>Invoke(Delegate) and related methods now return objects instead of void, as well as added Invoke methods that return pointers.</PackageReleaseNotes>
+        <PackageReleaseNotes>Fixed thread variance, improved Unsafe Dispatches, more bug fixes.</PackageReleaseNotes>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>

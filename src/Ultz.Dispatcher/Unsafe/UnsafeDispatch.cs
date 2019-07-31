@@ -1,6 +1,6 @@
 namespace Ultz.Dispatcher.Unsafe
 {
-    public class UnsafeDispatch
+    public struct UnsafeDispatch
     {
         public unsafe void* Value { get; set; }
 

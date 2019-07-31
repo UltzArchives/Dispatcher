@@ -18,13 +18,14 @@ namespace Ultz.Dispatcher
         public BlockingCollection<Task> Queue { get; }
         public Task Executor { get; }
 
-        private async Task Run()
+        private Task Run()
         {
             foreach (var task in Queue.GetConsumingEnumerable(_cts.Token))
             {
-                task.Start();
-                await task;
+                task.RunSynchronously();
             }
+
+            return Task.CompletedTask;
         }
 
         public void Dispose()
