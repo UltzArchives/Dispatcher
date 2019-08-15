@@ -12,7 +12,8 @@ namespace Ultz.Dispatcher
         {
             _cts = new CancellationTokenSource();
             Queue = new BlockingCollection<Dispatch>();
-            Executor = new Thread(Run);
+            Executor = new Thread(Run) {IsBackground = true};
+            Executor.Start();
         }
 
         public BlockingCollection<Dispatch> Queue { get; }
@@ -23,6 +24,7 @@ namespace Ultz.Dispatcher
             foreach (var task in Queue.GetConsumingEnumerable(_cts.Token))
             {
                 task.Result = task.Delegate.DynamicInvoke(task.Arguments);
+                task.ResetEvent.Set();
             }
         }
 

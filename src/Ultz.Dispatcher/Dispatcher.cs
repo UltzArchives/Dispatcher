@@ -26,6 +26,7 @@ namespace Ultz.Dispatcher
         public void Invoke(Action @delegate)
         {
             var task = new Dispatch {Arguments = new object[0], Delegate = @delegate};
+            Thread.Queue.Add(task);
             task.ResetEvent.WaitOne();
         }
 

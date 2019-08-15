@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>3.0.0-pre</Version>
+        <Version>3.0.0-pre2</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Provides tools to run code exclusively on a specific thread, similar to the Dispatcher class from WPF.</Description>
         <PackageReleaseNotes>Attempt to conquer thread variance once and for all.</PackageReleaseNotes>
