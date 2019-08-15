@@ -11,29 +11,26 @@ namespace Ultz.Dispatcher
         public DispatcherThread()
         {
             _cts = new CancellationTokenSource();
-            Queue = new BlockingCollection<Task>();
-            Executor = Task.Run(Run);
+            Queue = new BlockingCollection<Dispatch>();
+            Executor = new Thread(Run);
         }
 
-        public BlockingCollection<Task> Queue { get; }
-        public Task Executor { get; }
+        public BlockingCollection<Dispatch> Queue { get; }
+        public Thread Executor { get; }
 
-        private Task Run()
+        private void Run()
         {
             foreach (var task in Queue.GetConsumingEnumerable(_cts.Token))
             {
-                task.RunSynchronously();
+                task.Result = task.Delegate.DynamicInvoke(task.Arguments);
             }
-
-            return Task.CompletedTask;
         }
 
         public void Dispose()
         {
             _cts.Cancel();
-            Executor.Wait();
+            Executor.Join();
             Queue?.Dispose();
-            Executor?.Dispose();
         }
     }
 }
